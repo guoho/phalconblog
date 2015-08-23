@@ -6,7 +6,7 @@ return new \Phalcon\Config(array(
         'host'        => 'localhost',
         'username'    => 'root',
         'password'    => '',
-        'dbname'      => 'coupon',
+        'dbname'      => 'codertostart_blog',
         'charset'     => 'utf8',
     ),
     'application' => array(
@@ -16,6 +16,6 @@ return new \Phalcon\Config(array(
         'pluginsDir'     => __DIR__ . '/../../app/plugins/',
         'libraryDir'     => __DIR__ . '/../../app/library/',
         'cacheDir'       => __DIR__ . '/../../app/cache/',
-        'baseUri'        => '/phalcontest/',
+        'baseUri'        => '/',
     )
 ));

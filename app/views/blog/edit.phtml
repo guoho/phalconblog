@@ -1,0 +1,53 @@
+
+<?php echo $this->getContent(); ?>
+
+<?php echo $blog['postId']>0 ? $this->tag->form("blog/update") : $this->tag->form("blog/create"); ?>
+
+<table width="100%">
+    <tr>
+        <td align="left"><?php echo $this->tag->linkTo(array("blog", "Back")) ?></td>
+        <td align="right"><?php echo $this->tag->submitButton("Save") ?></td>
+    </tr>
+</table>
+
+<div align="center">
+    <h1>Edit blog</h1>
+</div>
+
+<table>
+
+    <tr>
+        <td align="right">
+            <label for="title">标题</label>
+        </td>
+        <td align="left">
+        <input type="hidden" name="postId" value="<?php echo $blog['postId'];?>" />
+        <input type="text" name="title" id="" value="<?php echo $blog['title'];?>"/>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <label for="title">分类</label>
+        </td>
+        <td align="left">
+           
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <label for="content">内容</label>
+        </td>
+        <td align="left">
+        <textarea name="content" id="" cols="30" rows="10"><?php echo $blog['content'];?></textarea>
+        </td>
+    </tr>
+
+
+
+    <tr>
+        <td><?php echo $this->tag->hiddenField("id") ?></td>
+        <td><?php echo $this->tag->submitButton("Save") ?></td>
+    </tr>
+</table>
+
+</form>
