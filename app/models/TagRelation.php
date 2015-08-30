@@ -1,5 +1,5 @@
 <?php
-
+namespace Blog\Model;
 class TagRelation extends \Phalcon\Mvc\Model
 {
 

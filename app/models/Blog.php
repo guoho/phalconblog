@@ -1,4 +1,5 @@
 <?php
+
 class Blog extends \Phalcon\Mvc\Model {
 	
 	/**
@@ -101,7 +102,13 @@ class Blog extends \Phalcon\Mvc\Model {
 		$this->keepSnapshots(true);
 		//只更新修改的数据
 		$this->useDynamicUpdate(true);
+		//更多分类
+		$this->hasMany('postId', 'CategoryRelation', 'postId');
+		//更多标签
+		$this->hasMany('postId', 'TagRelation', 'postId');
 		
+		//更多标签
+		$this->hasMany('postId', 'BlogHistory', 'postId');
 	}
 	
 	/**

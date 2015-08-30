@@ -7,9 +7,9 @@ class Category extends \Phalcon\Mvc\Model
      * 分类ID
      * 
      * @var integer
-     * @Column(type="integer",nullable="true"  field="caterogry_id")
+     * @Column(type="integer",nullable="true"  field="category_id")
      */
-    public $caterogryId;
+    public $categoryId;
 
     /**
      * 父级ID
@@ -23,9 +23,9 @@ class Category extends \Phalcon\Mvc\Model
      * 分类名 
      * 
      * @var string
-     * @Column(type="string",nullable="true"  field="cat_name")
+     * @Column(type="string",nullable="true"  field="category_name")
      */
-    public $catName;
+    public $categoryName;
 
     /**
      * 分类描述
@@ -42,28 +42,15 @@ class Category extends \Phalcon\Mvc\Model
      * @Column(type="integer",nullable="true"  field="post_count")
      */
     public $postCount;
-
+    
     /**
-     * Allows to query a set of records that match the specified conditions
+     * 排序ID
      *
-     * @param mixed $parameters
-     * @return Category[]
+     * @var integer
+     * @Column(type="integer",nullable="true"  field="sort_id")
      */
-    public static function find($parameters = null)
-    {
-        return parent::find($parameters);
-    }
-
-    /**
-     * Allows to query the first record that match the specified conditions
-     *
-     * @param mixed $parameters
-     * @return Category
-     */
-    public static function findFirst($parameters = null)
-    {
-        return parent::findFirst($parameters);
-    }
+    public $sortId;
+    
 
     /**
      * Independent Column Mapping.
@@ -74,11 +61,12 @@ class Category extends \Phalcon\Mvc\Model
     public function columnMap()
     {
         return array(
-            'caterogry_id' => 'caterogryId',
+            'category_id' => 'categoryId',
             'parent_id' => 'parentId',
-            'cat_name' => 'catName',
+            'category_name' => 'categoryName',
             'description' => 'description',
-            'post_count' => 'postCount'
+            'post_count' => 'postCount',
+        		'sort_id' => 'sortId'
         );
     }
 
@@ -92,4 +80,13 @@ class Category extends \Phalcon\Mvc\Model
         return 'category';
     }
 
+    public function initialize(){
+    	//保存快照数据
+    	$this->keepSnapshots(true);
+    	//只更新修改的数据
+    	$this->useDynamicUpdate(true);
+    	//更多分类
+    	$this->hasMany('categoryId', 'CategoryRelation', 'categoryId');
+    }
+    
 }

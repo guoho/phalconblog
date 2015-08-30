@@ -2,6 +2,7 @@
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 use Phalcon\Mvc\Model;
+
 class BlogController extends ControllerBase {
 	
 	/**
@@ -34,7 +35,11 @@ class BlogController extends ControllerBase {
 					"action" => "index" 
 			) );
 		}
+		$cateogryIds = $blog->getCategoryRelation();
+		$category = new Category();
+		$categoryList = $category->find();
 		
+		$tags = $blog->getCategoryRelation();
 		$this->view->blog = $blog = $blog->toArray();
 	}
 	
@@ -101,14 +106,20 @@ class BlogController extends ControllerBase {
 							$blog->id 
 					) 
 			) );
-		}
+		}		
+		$blogCategoryIds = $a;
 		
-
+		$categoryIds = $this->request->getPost('categoryIds');
+		foreach ($categoryIds as $categoryId){
+			
+		}
 		if($blog->hasChanged()){
 			$blogHistory = new BlogHistory();
 			$blogHistory->assign($blog->getSnapshotData());
 			$blogHistory->save();
 		}
+		
+		
 		$this->flash->success ( "文章修改成功" );
 		
 		return $this->dispatcher->forward ( array (

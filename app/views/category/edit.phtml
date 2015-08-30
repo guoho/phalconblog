@@ -1,7 +1,7 @@
 
 <?php echo $this->getContent(); ?>
 
-<?php echo $this->tag->form("category/save") ?>
+<?php echo $category['categoryId']>0 ? $this->tag->form("category/update") : $this->tag->form("category/create"); ?>
 
 <table width="100%">
     <tr>
@@ -17,39 +17,40 @@
 <table>
     <tr>
         <td align="right">
-            <label for="parent_id">Parent</label>
+            <label for="cat_name">Cat Of Name</label>
         </td>
         <td align="left">
-            <?php echo $this->tag->textField(array("parent_id", "type" => "number")) ?>
+        <input type="text" name="categoryName" value="<?php echo $category['categoryName'];?>" />
         </td>
     </tr>
     <tr>
         <td align="right">
-            <label for="cat_name">Cat Of Name</label>
+            <label for="parent_id">Parent</label>
         </td>
         <td align="left">
-            <?php echo $this->tag->textField(array("cat_name", "size" => 30)) ?>
+        <select name="parentId" id="">
+        	<option value="">请选择分类</option>
+        	<?php foreach ($categoryList as $item){
+        	?>
+        	<option value="<?php echo $item['categoryId'];?>" <?php echo $item['categoryId'] == $category['parentId'] ? "selected" : '' ?>><?php echo $item['layer'].$item['categoryName'];?></option>
+        	<?php } 
+        	?>
+        </select>
+     
         </td>
     </tr>
+
     <tr>
         <td align="right">
             <label for="description">Description</label>
         </td>
         <td align="left">
-            <?php echo $this->tag->textField(array("description", "size" => 30)) ?>
-        </td>
-    </tr>
-    <tr>
-        <td align="right">
-            <label for="post_count">Post Of Count</label>
-        </td>
-        <td align="left">
-            <?php echo $this->tag->textField(array("post_count", "type" => "number")) ?>
+        <textarea name="description" id="" cols="30" rows="10"><?php echo $category['description'];?></textarea>
         </td>
     </tr>
 
     <tr>
-        <td><?php echo $this->tag->hiddenField("id") ?></td>
+        <td><input type="hidden" name="categoryId" value="<?php echo $category['categoryId'];?>"/></td>
         <td><?php echo $this->tag->submitButton("Save") ?></td>
     </tr>
 </table>

@@ -21,7 +21,7 @@
             <label for="title">标题</label>
         </td>
         <td align="left">
-        <input type="hidden" name="postId" value="<?php echo $blog['postId'];?>" />
+       
         <input type="text" name="title" id="" value="<?php echo $blog['title'];?>"/>
         </td>
     </tr>
@@ -30,7 +30,23 @@
             <label for="title">分类</label>
         </td>
         <td align="left">
-           
+                   <select name="parentId" id="">
+            <option value="">请选择分类</option>
+            <?php foreach ($categoryList as $item){
+            ?>
+            <option value="<?php echo $item['categoryId'];?>" <?php echo $item['categoryId'] == $category['parentId'] ? "selected" : '' ?>><?php echo $item['layer'].$item['categoryName'];?></option>
+            <?php } 
+            ?>
+        </select>
+        </td>
+    </tr>
+        <tr>
+        <td align="right">
+            <label for="title">标签</label>
+        </td>
+        <td align="left">
+           <input type="text" name="tags[]" value="" />
+           <input type="text" name="tags[]" value="" />
         </td>
     </tr>
     <tr>
@@ -45,7 +61,7 @@
 
 
     <tr>
-        <td><?php echo $this->tag->hiddenField("id") ?></td>
+        <td> <input type="hidden" name="postId" value="<?php echo $blog['postId'];?>" /> </td>
         <td><?php echo $this->tag->submitButton("Save") ?></td>
     </tr>
 </table>
