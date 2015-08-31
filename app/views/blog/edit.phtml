@@ -26,18 +26,15 @@
         </td>
     </tr>
     <tr>
-        <td align="right">
+        <td colspan="2">
             <label for="title">分类</label>
-        </td>
-        <td align="left">
-                   <select name="parentId" id="">
-            <option value="">请选择分类</option>
-            <?php foreach ($categoryList as $item){
-            ?>
-            <option value="<?php echo $item['categoryId'];?>" <?php echo $item['categoryId'] == $category['parentId'] ? "selected" : '' ?>><?php echo $item['layer'].$item['categoryName'];?></option>
-            <?php } 
-            ?>
-        </select>
+
+        <ul style="list-style:none">
+         <?php foreach ($categoryList as $item){  ?>            
+        	<li><?php echo $item['layer'];?><input type="checkbox" name="categoryIds[]" id=""  <?php echo in_array($item['categoryId'], $categoryIds) ? "checked" : '' ?> value="<?php echo $item['categoryId'];?>"/><?php echo $item['categoryName'];?></li>
+         <?php }  ?>
+        </ul>
+                  
         </td>
     </tr>
         <tr>
@@ -45,8 +42,9 @@
             <label for="title">标签</label>
         </td>
         <td align="left">
-           <input type="text" name="tags[]" value="" />
-           <input type="text" name="tags[]" value="" />
+           <input type="text" name="tags" value="<?php echo $tags;?>" />
+           <br>
+           多个标签请用英文逗号（,）分开
         </td>
     </tr>
     <tr>

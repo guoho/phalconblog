@@ -28,8 +28,7 @@
             <label for="parent_id">Parent</label>
         </td>
         <td align="left">
-        <select name="parentId" id="">
-        	<option value="">请选择分类</option>
+        
         	<?php foreach ($categoryList as $item){
         	?>
         	<option value="<?php echo $item['categoryId'];?>" <?php echo $item['categoryId'] == $category['parentId'] ? "selected" : '' ?>><?php echo $item['layer'].$item['categoryName'];?></option>

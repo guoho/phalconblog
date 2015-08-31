@@ -34,7 +34,7 @@ class CategoryRelation extends \Phalcon\Mvc\Model {
 		return array (
 				'id' => 'id',
 				'post_id' => 'postId',
-				'caterogry_id' => 'caterogryId' 
+				'category_id' => 'categoryId' 
 		);
 	}
 	

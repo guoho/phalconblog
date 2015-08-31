@@ -33,7 +33,7 @@ class CategoryController extends ControllerBase {
 		}
 		$this->view->category = $category->toArray ();
 		$categoryList = Category::find ();
-		if(!empty($category)){
+		if(!empty($categoryList)){
 			$tree = new Tree($categoryList->toArray());
 			$categoryList = $tree->getTree(0, $caterogryId);
 		}
